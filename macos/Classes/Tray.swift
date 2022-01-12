@@ -28,9 +28,10 @@ class SystemTray : NSObject, NSMenuDelegate {
             switch event.type {
             case .leftMouseUp:
                 channel.invokeMethod(kSystemTrayEventCallbackMethod, arguments: kSystemTrayEventLButtnUp)
+                statusItem?.menu = statusItemMenu
+                statusItem?.button?.performClick(nil)
             default:
                 channel.invokeMethod(kSystemTrayEventCallbackMethod, arguments: kSystemTrayEventRButtnUp)
-
                 statusItem?.menu = statusItemMenu
                 statusItem?.button?.performClick(nil)
             }

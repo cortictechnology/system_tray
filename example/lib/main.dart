@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 
-import 'package:system_tray/system_tray.dart';
+import 'package:system_tray/system_tray.dart' as system_tray;
 
 void main() async {
   runApp(const MyApp());
@@ -29,8 +29,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final SystemTray _systemTray = SystemTray();
-  final AppWindow _appWindow = AppWindow();
+  final system_tray.SystemTray _systemTray = system_tray.SystemTray();
+  final system_tray.AppWindow _appWindow = system_tray.AppWindow();
 
   Timer? _timer;
   bool _toogleTrayIcon = true;
@@ -51,9 +51,9 @@ class _MyAppState extends State<MyApp> {
     final path =
         Platform.isWindows ? 'assets/app_icon.ico' : 'assets/app_icon.png';
     final menu = [
-      MenuItem(label: 'Show', onClicked: _appWindow.show),
-      MenuItem(label: 'Hide', onClicked: _appWindow.hide),
-      MenuItem(
+      system_tray.MenuItem(label: 'Show', onClicked: _appWindow.show),
+      system_tray.MenuItem(label: 'Hide', onClicked: _appWindow.hide),
+      system_tray.MenuItem(
         label: 'Start flash tray icon',
         onClicked: () {
           debugPrint("Start flash tray icon");
@@ -69,7 +69,7 @@ class _MyAppState extends State<MyApp> {
           );
         },
       ),
-      MenuItem(
+      system_tray.MenuItem(
         label: 'Stop flash tray icon',
         onClicked: () {
           debugPrint("Stop flash tray icon");
@@ -82,24 +82,24 @@ class _MyAppState extends State<MyApp> {
           );
         },
       ),
-      MenuSeparator(),
-      SubMenu(
+      system_tray.MenuSeparator(),
+      system_tray.SubMenu(
         label: "SubMenu",
         children: [
-          MenuItem(
+          system_tray.MenuItem(
             label: 'SubItem1',
             enabled: false,
             onClicked: () {
               debugPrint("click SubItem1");
             },
           ),
-          MenuItem(
+          system_tray.MenuItem(
             label: 'SubItem2',
             onClicked: () {
               debugPrint("click SubItem2");
             },
           ),
-          MenuItem(
+          system_tray.MenuItem(
             label: 'SubItem3',
             onClicked: () {
               debugPrint("click SubItem3");
@@ -107,8 +107,8 @@ class _MyAppState extends State<MyApp> {
           ),
         ],
       ),
-      MenuSeparator(),
-      MenuItem(
+      system_tray.MenuSeparator(),
+      system_tray.MenuItem(
         label: 'Exit',
         onClicked: _appWindow.close,
       ),
